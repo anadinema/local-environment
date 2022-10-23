@@ -1,5 +1,9 @@
-# docker-compose.yaml for portainer
+# docker-compose for portainer
 version: '3.9'
+
+networks:
+    expose-internet:
+        external: true
 
 services:
   portainer:
@@ -12,6 +16,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer_data:/data
+    network:
+      - expose-internet
     ports:
       - 8000:8000
       - 9443:9443
